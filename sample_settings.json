@@ -1,0 +1,5 @@
+{
+  "s3_repo" : "your_bucket_name",
+  "profile" : "your_profile",
+  "s3_public_url" : "your_public_url_for_s3/index.html"
+}

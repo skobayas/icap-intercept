@@ -1,0 +1,17 @@
+sequenceDiagram
+    autonumber
+    actor User
+    participant ICAP proxy
+    participant S3(untrusted)
+    participant MetaDefenderCloud
+    participant S3(trusted)
+    participant WebServer
+    
+    User ->> WebServer: Get encrypted.zip
+    WebServer ->> ICAP proxy: Send encrypted.zip
+    ICAP proxy ->> User: Your file intercepted, visit S3(untrusted)
+　　 User ->> S3(untrusted): Specify the file and password
+    S3(untrusted)->> MetaDefenderCloud: Send specific file and password
+    MetaDefenderCloud ->> S3(trusted): Send sanitized file
+    User ->> S3(trusted): Get sanitized file
+    S3(trusted) ->> User: Send sanitized file
